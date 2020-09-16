@@ -17,6 +17,7 @@
     >
       <template v-slot:default>
         <slot :message="snackbar.message">
+          <h3 class="mb-2" v-if="snackbar.header">{{ snackbar.header }}</h3>
           {{ snackbar.message }}
         </slot>
       </template>
@@ -172,6 +173,7 @@ export default {
         if (!bottom && !top) bottom=true;
         this.snackbars.push({
           key: key,
+          header: this.getProp('header', i) || undefined,
           message: this.allMessages[i],
           top: top,
           bottom: bottom,
